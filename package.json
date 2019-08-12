@@ -4,7 +4,23 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-packager . --overwrite --out=dist --asar",
+    "build": "electron-builder --dir"
+  },
+  "build": {
+    "appId": "fm.moon.electron-quick-start",
+    "buildVersion": "1",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "renderer.js",
+      "main.js",
+      "index.html",
+      "tray_icon"
+    ],
+    "asar": true
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,6 +33,8 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^4.0.3"
+    "electron": "^4.0.3",
+    "electron-packager": "^14.0.4",
+    "electron-builder": "^21.2.0"
   }
 }

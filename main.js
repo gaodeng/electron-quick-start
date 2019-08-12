@@ -7,7 +7,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 800, height: 600,webPreferences: { nodeIntegration: true,  webSecurity: false, }})
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
@@ -22,22 +22,16 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
-
-  tray = new Tray('tray_icon/tray_iconTemplate.png')
-  const contextMenu = Menu.buildFromTemplate([
-    
-    { label: 'show main window', type: 'normal', click:()=>{
-      mainWindow.show();
-    } }
-  ])
-  tray.setToolTip('This is my application.')
-  tray.setContextMenu(contextMenu)
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow();
+  mainWindow.webContents.send('message', 'hahahahahahahahaah');
+  
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
