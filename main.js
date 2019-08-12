@@ -29,7 +29,8 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   createWindow();
-  mainWindow.webContents.send('message', 'hahahahahahahahaah');
+  mainWindow.webContents.send('message', 'hellllllllo');
+  console.log(mainWindow.webContents.send)
   
 })
 
